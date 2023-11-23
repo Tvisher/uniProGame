@@ -15,126 +15,139 @@
                 <div class="screen-bg__logo">
                     <img src="./img/logo.svg" alt="">
                 </div>
-                <div class="eco-game__battery">
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="green"></span>
-                    <span class="half"></span>
-                    <span class=""></span>
+                <div class="eco-game__battery" v-show="step == 3">
+                    <span v-for="num in 15" :class="[
+                    {'green':num<=batteryCounter},
+                    {'half':(num-0.5)==batteryCounter}
+                    ]"></span>
                 </div>
-                <div class="eco-game-screen " data-step="1">
-                    <div class="screen-bg-content">
-                        <div class="screen-bg-image">
-                            <img src="./img/screen-1.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="screen-content " data-level="1">
-                        <div class="screen-content-img">
-                            <img src="./img/screen-1-inner.png" alt="">
-                        </div>
-                        <button class="screen-content__btn">Играть</button>
-                    </div>
-                    <div class="screen-content " data-level="2">
-                        <div class="screen-content__modal">
-                            <p>
-                                Наша игра позволит вам за несколько минут прожить один день из жизни экологического
-                                супергероя. Сценарий предлагает различные варианты действий. Ваша задача – сделать
-                                правильный выбор, от которого будет зависеть не только ваш высокий экологический статус,
-                                но и качество жизни будущих поколений, ведь оно напрямую связано с экологией. Путь к
-                                вариантам ответа подскажут стрелки-указатели и подсвеченные предметы на картинках. После
-                                этого вы узнаете, куда привел вас очередной ответ – в светлое и чистое экологическое
-                                завтра или в глухой тупик истощения жизненных сил планеты. В зависимости от ответов
-                                индикаторы вашей шкалы ущерба природе будут угрожающе расти или, наоборот, стремиться к
-                                нулевой отметке.
-                            </p>
-                            <p>
-                                Итоговый результат покажет, можно ли считать вас экологическим супергероем. Итак,
-                                вперед! Удачи!
-                            </p>
-                            <button class="screen-content__btn typical-btn">Понятно</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="eco-game-screen " data-step="2">
-                    <div class="screen-bg-content">
-                        <div class="screen-bg-image">
-                            <img src="./img/screen-2.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="screen-content " data-level="1">
-                        <div class="screen-content__modal">
-                            <p>
-                                Сегодня экологичный образ жизни становится все более популярным, а советы о принципах
-                                разумного потребления доступны в один клик. Но одно дело знать, а другое – реально
-                                заботиться об экологии. Давайте проверим, насколько вы продвинулись в этом направлении.
-                            </p>
-                            <button class="screen-content__btn typical-btn">Далее</button>
-                        </div>
-                    </div>
-                    <div class="screen-content " data-level="2">
-                        <div class="screen-content__modal">
-                            <p>
-                                Вы&nbsp;просыпаетесь и&nbsp;начинаете день с&nbsp;обычных гигиенических процедур...
-                            </p>
-                        </div>
-                        <div class="click-selection">
-                        </div>
-                        <div class="help-arrow"></div>
-                    </div>
-                </div>
-                <div class="eco-game-screen show" data-step="3">
-                    <div class="screen-bg-content">
-                        <div class="screen-bg-image">
-                            <img src="./img/screen-3.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="screen-content " data-level="1">
-                        <div class="click-selection">
-                            <img src="./img/step-3-level-1-selection-1.svg" alt="">
-                        </div>
-                        <div class="help-arrow"></div>
-                    </div>
-
-                    <div class="screen-content show" data-level="2">
-                        <div class="screen-content__modal">
-                            <p>Выключаете воду, когда чистите зубы?</p>
-                        </div>
-                        <div class="click-selection__hidden-wrapper">
-                            <div class="click-selection" data-selection="1">
-                                <img src="./img/step-3-level-2-selection-1.svg" alt="">
+                <transition name="fade" @after-enter="onAfterEnter" mode="out-in">
+                    <div class="eco-game-screen" v-if="step == 1" data-step="1">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-1.jpg" alt="">
                             </div>
                         </div>
-                        <div class="click-selection" data-selection="2">
-                            <img src="./img/step-3-level-2-selection-2.svg" alt="">
-
-                        </div>
-                        <div class="selection-modal" data-selection-modal="1">
-                            <p>
-                                У меня счетчики, поэтому не хочу, чтобы деньги «утекали по трубам» вместе с водой.
-                            </p>
-                            <button class="typical-btn">Выключаю воду</button>
-                        </div>
-                        <div class="selection-modal" data-selection-modal="2">
-                            <p>
-                                Зачем зацикливаться на мелочах? В жизни и так много ограничений.
-                            </p>
-                            <button class="typical-btn">Пусть журчит!</button>
-                        </div>
-                        <div class="help-arrow" data-arrow="1"></div>
-                        <div class="help-arrow" data-arrow="2"></div>
+                        <transition name="fade" @after-enter="onAfterEnter" mode="out-in">
+                            <div class="screen-content" v-if="level == 1" data-level="1">
+                                <div class="screen-content-img">
+                                    <img src="./img/screen-1-inner.png" alt="">
+                                </div>
+                                <button class="screen-content__btn" @click.once="nextLevel">Играть</button>
+                            </div>
+                            <div class="screen-content" v-else-if="level == 2" data-level="2">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Наша игра позволит вам за несколько минут прожить один день из жизни
+                                        экологического
+                                        супергероя. Сценарий предлагает различные варианты действий. Ваша задача –
+                                        сделать
+                                        правильный выбор, от которого будет зависеть не только ваш высокий экологический
+                                        статус,
+                                        но и качество жизни будущих поколений, ведь оно напрямую связано с экологией.
+                                        Путь к
+                                        вариантам ответа подскажут стрелки-указатели и подсвеченные предметы на
+                                        картинках.
+                                        После
+                                        этого вы узнаете, куда привел вас очередной ответ – в светлое и чистое
+                                        экологическое
+                                        завтра или в глухой тупик истощения жизненных сил планеты. В зависимости от
+                                        ответов
+                                        индикаторы вашей шкалы ущерба природе будут угрожающе расти или, наоборот,
+                                        стремиться к
+                                        нулевой отметке.
+                                    </p>
+                                    <p>
+                                        Итоговый результат покажет, можно ли считать вас экологическим супергероем.
+                                        Итак,
+                                        вперед! Удачи!
+                                    </p>
+                                    <button class="screen-content__btn typical-btn"
+                                        @click.once="nextStep">Понятно</button>
+                                </div>
+                            </div>
+                        </transition>
                     </div>
+                    <div class="eco-game-screen" v-else-if="step == 2" data-step="2">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-2.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" @after-enter="onAfterEnter" mode="out-in">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Сегодня экологичный образ жизни становится все более популярным, а советы о
+                                        принципах
+                                        разумного потребления доступны в один клик. Но одно дело знать, а другое –
+                                        реально
+                                        заботиться об экологии. Давайте проверим, насколько вы продвинулись в этом
+                                        направлении.
+                                    </p>
+                                    <button class="screen-content__btn typical-btn"
+                                        @click.once="nextLevel">Далее</button>
+                                </div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Вы&nbsp;просыпаетесь и&nbsp;начинаете день с&nbsp;обычных гигиенических
+                                        процедур...
+                                    </p>
+                                </div>
+                                <div class="click-selection" @click.once="nextStep">
+                                    <img src="./img/step-2-level-2-selection-1.svg" alt="">
+                                </div>
+                                <div class="help-arrow"></div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 3" data-step="3">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-3.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="click-selection" @click.once="nextLevel">
+                                    <img src="./img/step-3-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="help-arrow"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal">
+                                    <p>Выключаете воду, когда чистите зубы?</p>
+                                </div>
+                                <div class="click-selection__hidden-wrapper">
+                                    <div class="click-selection" data-selection="1">
+                                        <img src="./img/step-3-level-2-selection-1.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="click-selection" data-selection="2">
+                                    <img src="./img/step-3-level-2-selection-2.svg" alt="">
 
-                </div>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        У меня счетчики, поэтому не хочу, чтобы деньги «утекали по трубам» вместе с
+                                        водой.
+                                    </p>
+                                    <button class="typical-btn">Выключаю воду</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Зачем зацикливаться на мелочах? В жизни и так много ограничений.
+                                    </p>
+                                    <button class="typical-btn">Пусть журчит!</button>
+                                </div>
+                                <div class="help-arrow" data-arrow="1"></div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                        </transition>
+                    </div>
+                </transition>
             </div>
         </section>
     </div>

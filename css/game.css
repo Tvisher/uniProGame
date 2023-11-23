@@ -334,13 +334,13 @@ template {
 
 @keyframes dropShadowPulse {
   0% {
-    filter: drop-shadow(0px 6px 25px #0078dc) drop-shadow(0px -6px 25px #0078dc);
+    filter: drop-shadow(0px 6px 20px #0078dc) drop-shadow(0px -6px 20px #0078dc);
   }
   50% {
     filter: drop-shadow(0px 6px 10px #0078dc) drop-shadow(0px -6px 10px #0078dc);
   }
   100% {
-    filter: drop-shadow(0px 6px 25px #0078dc) drop-shadow(0px -6px 25px #0078dc);
+    filter: drop-shadow(0px 6px 20px #0078dc) drop-shadow(0px -6px 20px #0078dc);
   }
 }
 @keyframes dropShadowPulseRev {
@@ -348,12 +348,22 @@ template {
     filter: drop-shadow(0px 6px 10px #0078dc) drop-shadow(0px -6px 10px #0078dc);
   }
   50% {
-    filter: drop-shadow(0px 6px 25px #0078dc) drop-shadow(0px -6px 25px #0078dc);
+    filter: drop-shadow(0px 6px 20px #0078dc) drop-shadow(0px -6px 20px #0078dc);
   }
   100% {
     filter: drop-shadow(0px 6px 10px #0078dc) drop-shadow(0px -6px 10px #0078dc);
   }
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .eco-game {
   font-family: DINPro;
   margin: 50px auto;
@@ -400,16 +410,28 @@ template {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.screen-content__modal {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.screen-content.active .help-arrow,
+.eco-game-screen.active [data-level="1"] .help-arrow {
+  transform: scale(1);
+}
+.screen-content.active .screen-content__modal,
+.eco-game-screen.active [data-level="1"] .screen-content__modal {
+  opacity: 1;
 }
 
 .eco-game-screen {
-  display: none;
   width: 100%;
   height: 100%;
   position: relative;
-}
-.eco-game-screen.show {
-  display: block;
 }
 
 .screen-bg-content {
@@ -468,10 +490,7 @@ template {
   top: 0;
   width: 100%;
   height: 100%;
-  display: none;
-}
-.screen-content.show {
-  display: flex;
+  will-change: auto;
 }
 
 .selection-modal {
@@ -494,6 +513,7 @@ template {
 }
 
 .click-selection {
+  cursor: pointer;
   will-change: transform;
 }
 .click-selection img {
@@ -579,8 +599,8 @@ template {
   border-radius: 15px;
   border: 4px solid rgba(140, 204, 247, 0.5);
   background: rgba(255, 255, 255, 0.85);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px) opacity(1);
+          backdrop-filter: blur(10px) opacity(1);
 }
 [data-step="1"] [data-level="2"] .screen-content__modal p,
 [data-step="2"] [data-level="1"] .screen-content__modal p {
@@ -615,10 +635,18 @@ template {
 }
 [data-step="2"] [data-level="2"] .click-selection {
   position: absolute;
-  left: 4%;
-  top: 20%;
+  left: 3.7%;
+  top: 19.8%;
   height: 71%;
   width: 15%;
+  filter: drop-shadow(0px 6px 20px #0078dc) drop-shadow(0px -6px 20px #0078dc);
+  animation: dropShadowPulse 3s linear infinite 0.4s;
+}
+[data-step="2"] [data-level="2"] .click-selection img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 [data-step="2"] [data-level="2"] .help-arrow {
   left: 21%;
@@ -630,7 +658,6 @@ template {
 
 [data-step="3"] [data-level="1"] .click-selection {
   transition: transform 0.3s ease-in-out;
-  cursor: pointer;
   position: absolute;
   left: 14%;
   top: 55.5%;
