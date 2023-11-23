@@ -5,14 +5,16 @@ const pollApp = {
             step: 1,
             level: 1,
             batteryCounter: 14,
+            choise: ''
         }
     },
     methods: {
-        nextLevel() { setTimeout(() => this.level = 2, 200) },
+        nextLevel() { setTimeout(() => this.level++, 200) },
         nextStep() {
             setTimeout(() => {
                 this.level = 1;
-                this.step++
+                this.step++;
+                this.choise = '';
             }, 200)
         },
         onAfterEnter(el) {
@@ -24,8 +26,13 @@ const pollApp = {
             const elId = targetEl.dataset.selection;
             const curretModal = targetParent.querySelector(`[data-selection-modal="${elId}"]`);
             curretModal.classList.add('show');
-        }
+        },
 
+        choiseRes(choise, value) {
+            this.choise = choise;
+            this.batteryCounter += +value;
+            this.level++;
+        }
     }
 }
 

@@ -15,7 +15,7 @@
                 <div class="screen-bg__logo">
                     <img src="./img/logo.svg" alt="">
                 </div>
-                <div class="eco-game__battery" :class="{show:step == 3}">
+                <div class="eco-game__battery" :class="{show:step >= 3}">
                     <span v-for="num in 15" :class="[
                     {'green':num<=batteryCounter},
                     {'half':(num-0.5)==batteryCounter}
@@ -133,16 +133,51 @@
                                         У меня счетчики, поэтому не хочу, чтобы деньги «утекали по трубам» вместе с
                                         водой.
                                     </p>
-                                    <button class="typical-btn">Выключаю воду</button>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+0.5')">Выключаю
+                                        воду</button>
                                 </div>
                                 <div class="selection-modal" data-selection-modal="2">
                                     <p>
                                         Зачем зацикливаться на мелочах? В жизни и так много ограничений.
                                     </p>
-                                    <button class="typical-btn">Пусть журчит!</button>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">
+                                        Пусть журчит!
+                                    </button>
                                 </div>
-                                <div class="help-arrow" data-arrow="1"></div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
                                 <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==3" data-level="3">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Здорово! Тем самым, помимо денег, вы экономите около 60 литров воды в день и
+                                            примерно 20 кубометров воды в год. На нашей планете порядка 2 млрд человек
+                                            не имеют доступа к чистой питьевой воде. Бережное отношение к водным
+                                            ресурсам поможет обеспечить доступ к воде для всех.
+                                            А сэкономленные деньги – более 1600 рублей семейного бюджета ежегодно –
+                                            всегда можно «спустить» на более приятные вещи или впечатления.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Стоматологи рекомендуют чистить зубы не менее двух минут. За это время, если
+                                            не закрыть смеситель, из него может вытечь в среднем от 20 до 30 литров
+                                            воды. Это означает, что мы можем сэкономить около 60 литров в день и
+                                            примерно 20 кубометров воды в год, если будем выключать воду, когда чистим
+                                            зубы, и включать ее снова только для полоскания. А сэкономленные деньги –
+                                            более 1600 рублей семейного бюджета ежегодно – всегда можно «спустить» на
+                                            более приятные вещи или впечатления.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
                             </div>
                         </transition>
                     </div>

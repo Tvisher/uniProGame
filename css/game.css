@@ -416,8 +416,45 @@ template {
 }
 
 .screen-content__modal {
-  opacity: 0;
   transition: opacity 0.3s ease-in-out;
+}
+
+.screen-content__modal.choise-res {
+  width: 58.5%;
+  color: #19426b;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  border: 4px solid rgba(140, 204, 247, 0.5);
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(10px) opacity(1);
+          backdrop-filter: blur(10px) opacity(1);
+  overflow: hidden;
+}
+.screen-content__modal.choise-res p {
+  margin: 0;
+  margin-bottom: 16px;
+}
+.screen-content__modal.choise-res .screen-content__btn {
+  margin: auto;
+}
+.screen-content__modal.choise-res .choise-res__head {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+.screen-content__modal.choise-res .choise-res__body {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .screen-content.active .help-arrow,
