@@ -373,6 +373,7 @@ template {
   padding-top: 71.12%;
 }
 .eco-game .eco-game__content {
+  overflow: hidden;
   position: absolute;
   left: 0;
   top: 0;
@@ -506,10 +507,17 @@ template {
   background: rgba(255, 255, 255, 0.85);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 .selection-modal p {
   margin: 0;
   margin-bottom: 20px;
+}
+.selection-modal.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .click-selection {
@@ -521,6 +529,9 @@ template {
 }
 
 .eco-game__battery {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease-in-out 0.5s, transform 0.3s ease-in-out 0.5s;
   padding: 0.7%;
   padding-right: 1%;
   z-index: 3;
@@ -536,6 +547,10 @@ template {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.eco-game__battery.show {
+  opacity: 1;
+  transform: translateY(0px);
 }
 .eco-game__battery span {
   background: #d02c22;
@@ -641,12 +656,16 @@ template {
   width: 15%;
   filter: drop-shadow(0px 6px 20px #0078dc) drop-shadow(0px -6px 20px #0078dc);
   animation: dropShadowPulse 3s linear infinite 0.4s;
+  transition: transform 0.3s ease-in-out;
 }
 [data-step="2"] [data-level="2"] .click-selection img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+[data-step="2"] [data-level="2"] .click-selection:hover {
+  transform: scale(1.03);
 }
 [data-step="2"] [data-level="2"] .help-arrow {
   left: 21%;

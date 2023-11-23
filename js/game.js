@@ -11,18 +11,21 @@ const pollApp = {
         nextLevel() { setTimeout(() => this.level = 2, 200) },
         nextStep() {
             setTimeout(() => {
-                this.step++
                 this.level = 1;
+                this.step++
             }, 200)
         },
         onAfterEnter(el) {
-            console.log(el);
             el.classList.add('active');
         },
-        classBind(num) {
-            console.log(num <= this.batteryCounter);
-            return "green" ? num <= this.batteryCounter : ''
+        showSelectionModal(e) {
+            const targetEl = e.target.closest('.click-selection');
+            const targetParent = targetEl.closest('.screen-content');
+            const elId = targetEl.dataset.selection;
+            const curretModal = targetParent.querySelector(`[data-selection-modal="${elId}"]`);
+            curretModal.classList.add('show');
         }
+
     }
 }
 

@@ -15,7 +15,7 @@
                 <div class="screen-bg__logo">
                     <img src="./img/logo.svg" alt="">
                 </div>
-                <div class="eco-game__battery" v-show="step == 3">
+                <div class="eco-game__battery" :class="{show:step == 3}">
                     <span v-for="num in 15" :class="[
                     {'green':num<=batteryCounter},
                     {'half':(num-0.5)==batteryCounter}
@@ -121,13 +121,12 @@
                                     <p>Выключаете воду, когда чистите зубы?</p>
                                 </div>
                                 <div class="click-selection__hidden-wrapper">
-                                    <div class="click-selection" data-selection="1">
+                                    <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
                                         <img src="./img/step-3-level-2-selection-1.svg" alt="">
                                     </div>
                                 </div>
-                                <div class="click-selection" data-selection="2">
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
                                     <img src="./img/step-3-level-2-selection-2.svg" alt="">
-
                                 </div>
                                 <div class="selection-modal" data-selection-modal="1">
                                     <p>
