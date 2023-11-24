@@ -181,6 +181,236 @@
                             </div>
                         </transition>
                     </div>
+                    <div class="eco-game-screen" v-else-if="step == 4" data-step="4">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-4.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" @after-enter="onAfterEnter" mode="out-in">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        После чистки зубов наступает время завтрака и утреннего чаепития.
+                                    </p>
+                                </div>
+                                <div class="click-selection" @click.once="nextStep">
+                                    <img src="./img/step-4-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="help-arrow"></div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 5" data-step="5">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-5.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="click-selection" @click.once="nextLevel">
+                                    <img src="./img/step-5-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="help-arrow"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal">
+                                    <p>Какой чай предпочитаете – пакетированный или листовой, заваренный в чайнике?</p>
+                                </div>
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-5-level-2-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-5-level-2-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Чаепитие – это традиция!
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+0.5')">Заварю
+                                        листовой</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Я за удобство!
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">
+                                        Выбираю пакетики
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==3" data-level="3">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            В отличие от чайных пакетиков, листовой чай не создает лишний пластиковый
+                                            мусор. Заваривание чая позволяет снизить количество отходов и уменьшить
+                                            негативное воздействие на окружающую среду.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Бумажные чайные пакетики не подлежат переработке, а нейлоновые пирамидки и
+                                            вовсе могут сохраняться десятки лет в любой среде. <br>
+                                            Более экологичное решение – листовой чай без пакетиков или с упаковкой из
+                                            фильтр-бумаги, которую можно утилизировать в компосте.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 6" data-step="6">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-5.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="click-selection" @click.once="nextLevel">
+                                    <img src="./img/step-6-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="help-arrow"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal">
+                                    <p>Завтрак съеден, чай выпит, осталась пустая бутылка из-под молока. Ваши действия?
+                                    </p>
+                                </div>
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-6-level-2-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-6-level-2-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Ополосну бутылку из-под молока и подготовлю для утилизации.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+1')">На
+                                        переработку!</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Выброшу бутылку из-под молока.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">
+                                        В мусорное ведро!
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==3" data-level="3">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Ответственность – ваше второе имя! Сдавая пластик на утилизацию, вы
+                                            содействуете уменьшению количества пластиковых отходов, а также сокращаете
+                                            потребление новых сырьевых ресурсов для производства пластиковых бутылок.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Сдача бутылок из-под молока на переработку позволяет уменьшить количество
+                                            отходов и сократить потребление ресурсов для производства пластиковых
+                                            бутылок. Также из переработанного пластика создаются новые упаковки и
+                                            предметы, что способствует устойчивому использованию ресурсов и сокращению
+                                            экологического следа.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 7" data-step="7">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-4.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Утренние ритуалы окончены, пора на работу.
+                                        Выключаете свет и электроприборы?
+                                    </p>
+                                </div>
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-7-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-7-level-1-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Оставлю свет включенным, ведь электричество стоит копейки, а возвращаться после
+                                        тяжелого рабочего дня приятнее в уютно освещенный дом.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">Да будет
+                                        свет!</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Всегда выключаю свет и электроприборы, когда выхожу из дома.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+0.5')">
+                                        Выключить свет!
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Так держать! Выключение света и отключение электрических приборов при выходе
+                                            из дома способствуют уменьшению негативного воздействия на окружающую среду,
+                                            сокращению выбросов парниковых газов и сохранению природных ресурсов. Это
+                                            маленький, но важный вклад в заботу об окружающей среде.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Отключение электрических приборов при выходе из дома способствует уменьшению
+                                            негативного воздействия на окружающую среду. Впустую работающие
+                                            электроприборы продолжают потреблять электричество, что ведет к увеличению
+                                            выбросов диоксида углерода и других парниковых газов при его производстве.
+                                            Также экономия электроэнергии снижает негативное воздействие на окружающую
+                                            среду, связанное с добычей угля, нефти и газа.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
                 </transition>
             </div>
         </section>

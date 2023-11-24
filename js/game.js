@@ -30,12 +30,24 @@ const pollApp = {
 
         choiseRes(choise, value) {
             this.choise = choise;
-            this.batteryCounter += +value;
+            // this.batteryCounter += +value;
+            const batteryCounter = this.batteryCounter + (+value);
+            if (batteryCounter > 15) {
+                this.batteryCounter = 15
+            }
+            else if (batteryCounter < 0) {
+                this.batteryCounter = 0
+            }
+            else {
+                this.batteryCounter = batteryCounter;
+            }
             this.level++;
         }
     }
 }
 
 
-const app = Vue.createApp(pollApp);
-app.mount('#eco-game');
+const ecoGame = Vue.createApp(pollApp);
+ecoGame.mount('#eco-game');
+
+
