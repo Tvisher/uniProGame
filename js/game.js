@@ -2,7 +2,7 @@
 const pollApp = {
     data() {
         return {
-            step: 1,
+            step: 10,
             level: 1,
             batteryCounter: 14,
             choise: ''
@@ -42,6 +42,18 @@ const pollApp = {
                 this.batteryCounter = batteryCounter;
             }
             this.level++;
+        },
+        svgHover(e) {
+            const target = e.target;
+            const targetId = target.getAttribute('data-segment');
+            const targetImage = target.closest('.screen-content').querySelector(`[data-selection="${targetId}"]`);
+            targetImage && targetImage.classList.add('trans-anim')
+        },
+        svgUnhover(e) {
+            const target = e.target;
+            const targetId = target.getAttribute('data-segment');
+            const targetImage = target.closest('.screen-content').querySelector(`[data-selection="${targetId}"]`);
+            targetImage && targetImage.classList.remove('trans-anim')
         }
     }
 }
