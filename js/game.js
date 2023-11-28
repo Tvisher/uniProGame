@@ -54,7 +54,6 @@ const pollApp = {
 
         choiseRes(choise, value) {
             this.choise = choise;
-            // this.batteryCounter += +value;
             const batteryCounter = this.batteryCounter + (+value);
             if (batteryCounter > 15) {
                 this.batteryCounter = 15

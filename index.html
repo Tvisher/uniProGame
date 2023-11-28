@@ -766,6 +766,73 @@
                             </div>
                         </transition>
                     </div>
+                    <div class="eco-game-screen" v-else-if="step == 13" data-step="13">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-10.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Проверили подрядчика – работы выполняются в установленном порядке.
+                                    </p>
+                                    <p>
+                                        Напомните ли подрядчикам о необходимости уборки рабочего места в конце рабочей
+                                        смены?
+                                    </p>
+                                </div>
+
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-13-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-13-level-1-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Напоминание никогда <br> не бывает лишним.
+                                    </p>
+                                    <button class="typical-btn"
+                                        @click.once="choiseRes('good','+0.5')">Напомнить!</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Подрядчик и так все знает, не первый день работает.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">
+                                        Не мое дело
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Мы – хозяева на наших станциях, а подрядчики – это всего лишь «званые
+                                            гости». То, как они будут вести себя на нашей территории, зависит от нас.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Мы – хозяева на наших станциях, а подрядчики – это всего лишь «званые
+                                            гости». То, как они будут вести себя на нашей территории, зависит от нас.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
                 </transition>
             </div>
         </section>
