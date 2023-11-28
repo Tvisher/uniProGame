@@ -15,7 +15,7 @@
                 <div class="screen-bg__logo">
                     <img src="./img/logo.svg" alt="">
                 </div>
-                <div class="eco-game__battery" :class="{show:step >= 3}">
+                <div class="eco-game__battery" :class="{show:(step >= 3 && step != 11)}">
                     <span v-for="num in 15" :class="[
                     {'green':num<=batteryCounter},
                     {'half':(num-0.5)==batteryCounter}
@@ -622,6 +622,142 @@
                                             Ежегодно миллионы тонн пластиковых и бумажных стаканчиков и тарелок попадают
                                             на свалки и в океан. Использование одноразовой посуды увеличивает объем
                                             мусора и требует энергозатрат на утилизацию.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 11" data-step="11">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-8.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="content__text">
+                                    <div class="content__title">
+                                        Спасем планету <br> вместе!
+                                    </div>
+                                    <div class="content__descr">
+                                        Для этого не придется воевать с армией злобных <br>
+                                        пришельцев. Все гораздо проще. Для спасения планеты <br>
+                                        достаточно любить ее и заботиться об окружающей нас <br>
+                                        природе. Кликай на кнопку «Играть» и узнай, какие <br>
+                                        простые, но такие важные, экологически осознанные <br>
+                                        действия ты можешь выполнить
+                                        для сохранения нашего <br>
+                                        прекрасного мира.
+                                    </div>
+                                    <button class="typical-btn" @click.once="nextLevel">Играть</button>
+                                </div>
+                                <div class=" content__cup">
+                                    <img src="./img/cup-of-tea.svg" alt="">
+                                </div>
+                                <div class="content__star" data-star="1">
+                                    <img src="./img/star-1.png" alt="">
+                                </div>
+                                <div class="content__star" data-star="2">
+                                    <img src="./img/star-1.png" alt="">
+                                </div>
+                                <div class="content__star" data-star="3">
+                                    <img src="./img/star-1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-bg-content">
+                                    <div class="screen-bg-image">
+                                        <img src="./img/cup-bg.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="cup__content">
+                                    <transition name="fade" mode="out-in">
+                                        <div class="cup__text" :key="currentMessage.length">
+                                            {{currentMessage}}
+                                        </div>
+                                    </transition>
+                                    <button class="typical-btn" @click="newMessage">Ещё совет</button>
+                                    <button class="typical-btn" @click.once="nextStep">Далее</button>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 12" data-step="12">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-9.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Пришло время выйти в цех и проверить <br> выполнение работ подрядчиком.
+                                    </p>
+                                    <p>
+                                        По пути к бригаде видите, как один из подрядчиков <br> выбрасывает ртутную лампу
+                                        в
+                                        контейнер для ТБО.
+                                    </p>
+                                </div>
+
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-12-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-12-level-1-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Сделаю замечание подрядчику и расскажу, где находится спецконтейнер.
+                                    </p>
+                                    <button class="typical-btn"
+                                        @click.once="choiseRes('good','+0.5')">Рассказать!</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Не мое дело.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">
+                                        Пройти мимо
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Острые отравления людей возможны при концентрации паров ртути в воздухе в
+                                            пределах 0,13–0,8 мг/м3. Накопление отходов ртутных ламп разрешается только
+                                            в специально оборудованных местах. Попадание ртутных ламп в контейнеры с
+                                            другими производственными отходами недопустимо.
+                                            <br>
+                                            <br>
+                                            Вы поступили абсолютно правильно! Размещение ртутных ламп в смеси с другими
+                                            отходами с вероятностью
+                                            99,9% приведет к их разрушению и попаданию ртути в окружающую природную
+                                            среду.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Ртуть – чрезвычайно ядовитое вещество. Острые отравления людей возможны при
+                                            концентрации паров ртути в воздухе в пределах 0,13–0,8 мг/м3. В ртутных
+                                            лампах типа ДРЛ и ЛБ содержится 0,001% паров ртути. Поэтому накопление
+                                            отходов ртутных ламп разрешается только в специально оборудованных местах.
+                                            Напоминая нерадивому подрядчику о необходимости надлежащей утилизации
+                                            ртутьсодержащих отходов, вы вносите свой вклад в защиту окружающей среды и
+                                            своего здоровья.
                                         </p>
                                         <button class="screen-content__btn typical-btn"
                                             @click.once="nextStep">Далее</button>
