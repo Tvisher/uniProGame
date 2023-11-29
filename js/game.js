@@ -2,7 +2,7 @@
 const pollApp = {
     data() {
         return {
-            step: 14,
+            step: 1,
             level: 1,
             batteryCounter: 14,
             choise: '',
