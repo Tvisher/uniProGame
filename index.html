@@ -833,6 +833,246 @@
                             </div>
                         </transition>
                     </div>
+                    <div class="eco-game-screen" v-else-if="step == 14" data-step="14">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-11.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    По пути из цеха в кабинет наткнулись на опрокинутую бочку, из которой масло
+                                    протекает на грунт.
+                                </div>
+
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-14-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-14-level-1-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Это территория другого подразделения.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-3')">
+                                        Не мое дело
+                                    </button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Сообщу руководителю <br> и дождусь прибытия «группы ликвидации» экоинцидента.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+1.5')">
+                                        Ликвидируем!
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Вы поступили абсолютно правильно! Своевременное сообщение о любых утечках
+                                            или выбросах опасных веществ ответственным лицам поможет оперативно
+                                            локализовать аварии и предотвратить более тяжкие последствия для окружающей
+                                            среды и здоровья людей. Выяснение и устранение причин экоинцидента позволят
+                                            избежать его повторения в будущем.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Происшествие не было вовремя замечено. Попадание искры в ходе сварочных
+                                            работ привело к возгоранию масла. Пожарная бригада оперативно прибыла на
+                                            место и локализовала пожар, но все могло закончиться не так благополучно.
+                                            <br><br>
+                                            Сообщение об утечках или выбросах опасных веществ ответственным лицам
+                                            поможет оперативно локализовать аварии и предотвратить более тяжкие
+                                            последствия, а выяснение и устранение причин экоинцидента позволят избежать
+                                            его повторения в будущем.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 15" data-step="15">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-7.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Проект производства работ согласован, торт съеден, подрядчик проконтролирован,
+                                        рабочий день окончен, пора домой.
+                                    </p>
+                                    <p>
+                                        Выключите рабочий компьютер или оставите в спящем режиме?
+                                    </p>
+                                </div>
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-10-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-9-level-1-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Зачем выключать – ведь завтра снова на работу.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">Пусть
+                                        «спит»</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Конечно выключу. У меня там конфиденциальная информация вообще-то!
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+0.5')">
+                                        Выключить!
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Выключение компьютера по окончании рабочего дня помогает снизить негативное
+                                            воздействие на окружающую среду. Постоянно включенные компьютеры потребляют
+                                            электроэнергию, что приводит к увеличению выбросов углекислого газа. К тому
+                                            же это может привести к быстрому износу компонентов компьютера и
+                                            необходимости в их более частой замене. Ваше решение выключить компьютер
+                                            после работы – это не только акт ответственности, но и вклад в сохранение
+                                            нашей планеты.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Постоянно включенные компьютеры потребляют больше электроэнергии, что влечет
+                                            за собой дополнительные выбросы углекислого газа. К тому же это может
+                                            привести к быстрому износу компонентов компьютера и необходимости их более
+                                            частой замены, что также оказывает негативное влияние на окружающую среду.
+                                            Даже небольшое снижение потребления электроэнергии, такое как выключение
+                                            компьютера в нерабочее время, может сэкономить значительное количество
+                                            энергии и снизить негативное воздействие на климат.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 16" data-step="16">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-12.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" @after-enter="onAfterEnter" mode="out-in">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Следующая остановка – магазин. Выбираем продукты для вкусного и полезного
+                                        ужина.
+                                    </p>
+                                </div>
+                                <div class="click-selection" @click.once="nextStep">
+                                    <img src="./img/step-16-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="help-arrow"></div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 17" data-step="17">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-13.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="click-selection" @click.once="nextLevel">
+                                    <img src="./img/step-17-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="help-arrow"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-content__modal">
+                                    <p>
+                                        Чему отдадите предпочтение в магазине: <br> красивым и ровным фруктам и овощам
+                                        или
+                                        дадите шанс нестандартным формам и размерам?
+                                    </p>
+                                </div>
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-17-level-2-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-17-level-2-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        В мире и так много несовершенства, поэтому беру только ровные-красивые.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-0.5')">Так
+                                        вкуснее!</button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        Нет дискриминации по фруктово-овощной красоте и форме!
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+0.5')">
+                                        Дайте две!
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1"></div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==3" data-level="3">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Зачастую люди отказываются от покупки овощей и фруктов нестандартных форм, и
+                                            в итоге они оказываются на свалках. Ваше решение поможет снизить
+                                            продовольственные потери и уменьшить нагрузку на природную среду.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Понимаем вашу тягу к прекрасному, но неказистые с виду овощи и фрукты на
+                                            вкус ничем не отличаются от красивых. А ведь на то, чтобы их вырастить и
+                                            доставить в магазины, было затрачено много ресурсов.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
                 </transition>
             </div>
         </section>
