@@ -1073,6 +1073,73 @@
                             </div>
                         </transition>
                     </div>
+                    <div class="eco-game-screen" v-else-if="step == 18" data-step="18">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-14.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="click-selection" data-selection="1" @click.once="showSelectionModal">
+                                    <img src="./img/step-18-level-1-selection-1.svg" alt="">
+                                </div>
+                                <div class="click-selection" data-selection="2" @click.once="showSelectionModal">
+                                    <img src="./img/step-18-level-1-selection-2.svg" alt="">
+                                </div>
+                                <div class="selection-modal" data-selection-modal="1">
+                                    <p>
+                                        Нужен: пакет с пакетами сам свою коллекцию не пополнит!
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('bad','-1')">
+                                        В коллекцию
+                                    </button>
+                                </div>
+                                <div class="selection-modal" data-selection-modal="2">
+                                    <p>
+                                        У меня своя авоська.
+                                    </p>
+                                    <button class="typical-btn" @click.once="choiseRes('good','+0.5')">
+                                        Спасибо, нет!
+                                    </button>
+                                </div>
+                                <div class=" help-arrow" data-arrow="1">
+                                </div>
+                                <div class="help-arrow" data-arrow="2"></div>
+                            </div>
+                            <div class="screen-content" v-else-if="level==2" data-level="2">
+                                <div class="screen-bg-content">
+                                    <div class="screen-bg-image">
+                                        <img src="./img/screen-15.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img v-if="choise == 'good'" src="./img/good-res.svg" alt="">
+                                            <img v-if="choise == 'bad'" src="./img/bad-res.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="choise == 'good'">
+                                            Ваши ответственность и забота о природе заслуживают уважения! Одноразовые
+                                            пластиковые пакеты – источник серьезной экологической проблемы. Как правило,
+                                            они используются в течение короткого времени, но разлагаются сотни лет,
+                                            загрязняя окружающую среду.
+                                        </p>
+                                        <p v-if="choise == 'bad'">
+                                            Время использования одного пакета в среднем составляет около 20 минут,  а
+                                            разлагается он от 100 до 400 лет. Но и после этого превращается в частицы,
+                                            которые загрязняют воду и попадают в пищевую цепь через рыб и других морских
+                                            обитателей.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn"
+                                            @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
                 </transition>
             </div>
         </section>
