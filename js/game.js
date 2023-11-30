@@ -128,6 +128,9 @@ const pollApp = {
 
     mounted() {
         this.displayRandomMessage();
+        setTimeout(() => {
+            document.querySelector('.eco-game__content').classList.add('game-start')
+        }, 200);
     },
 }
 
