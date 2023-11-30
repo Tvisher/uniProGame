@@ -15,7 +15,7 @@
                 <div class="screen-bg__logo">
                     <img src="./img/logo.svg" alt="">
                 </div>
-                <div class="eco-game__battery" :class="{show:(step >= 3 && step != 11)}">
+                <div class="eco-game__battery" :class="{show:showBattery}">
                     <span v-for="num in 15" :class="[
                     {'green':num<=batteryCounter},
                     {'half':(num-0.5)==batteryCounter}
@@ -1135,6 +1135,81 @@
                                         </p>
                                         <button class="screen-content__btn typical-btn"
                                             @click.once="nextStep">Далее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 19" data-step="19">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img src="./img/screen-16.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="choise-res__ico">
+                                            <img src="./img/clock.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <h2 class="choise-res__body-title">Ваши решения имеют значение!</h2>
+                                        <p>
+                                            Пора узнать, как ваш ежедневный выбор тех <br>
+                                            или иных действий влияет на экологию.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="eco-game-screen" v-else-if="step == 20" data-step="20">
+                        <div class="screen-bg-content">
+                            <div class="screen-bg-image">
+                                <img v-if="resultType =='low'" src="./img/low-res.jpg" alt="">
+                                <img v-if="resultType =='middle'" src="./img/middle-res.jpg" alt="">
+                                <img v-if="resultType =='hight'" src="./img/hight-res.jpg" alt="">
+                            </div>
+                        </div>
+                        <transition name="fade" mode="out-in" @after-enter="onAfterEnter">
+                            <div class="screen-content" v-if="level==1" data-level="1">
+                                <div class="screen-content__modal choise-res">
+                                    <div class="choise-res__head">
+                                        <div class="eco-game__battery show">
+                                            <span v-for="num in 15" :class="[
+                                            {'green':num<=batteryCounter},
+                                            {'half':(num-0.5)==batteryCounter}
+                                            ]"></span>
+                                        </div>
+                                    </div>
+                                    <div class="choise-res__body">
+                                        <p v-if="resultType =='low'">
+                                            По мнению ученых, через несколько миллиардов лет Солнце погаснет, после чего
+                                            жизнь на Земле прекратится. Но с таким отношением к планете, как у вас,
+                                            конец света может наступить досрочно. Только представьте: черное небо не
+                                            только ночью, но и днем. Безжизненные пустыни там, где раньше шумели леса.
+                                            Горы мусора, заслоняющие Альпы и Гималаи. Если вам не по душе такая
+                                            перспектива, срочно меняйте свое экоповедение. Ведь наше общее будущее
+                                            зависит от действий каждого.
+                                        </p>
+
+                                        <p v-if="resultType =='middle'">
+                                            Забота об экологии пока не пополнила список ваших повседневных привычек. Но
+                                            вы, несомненно, на верном пути. Вы стараетесь и делаете все более уверенные
+                                            шаги в экологически правильном направлении. Главное – не останавливаться и
+                                            помнить, что мелочей в этом деле не бывает. Мы верим в вас!
+                                        </p>
+                                        <p v-if="resultType =='hight'">
+                                            Браво! Вы – экологически образцовая личность. Благодаря таким людям, как вы,
+                                            есть надежда, что старушка Земля протянет еще миллиард-другой лет не
+                                            задыхаясь и не кашляя. За вашу сознательность мы бы вам даже цветы вручили.
+                                            Но так же, как и вы, считаем, что цветами лучше любоваться на клумбах и в
+                                            дикой природе.
+                                        </p>
+                                        <button class="screen-content__btn typical-btn" @click.once="gameReset">Пройти
+                                            игру заново</button>
                                     </div>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
 const pollApp = {
     data() {
         return {
-            step: 1,
+            step: 20,
             level: 1,
             batteryCounter: 14,
             choise: '',
@@ -92,6 +92,37 @@ const pollApp = {
         },
         newMessage() {
             this.displayRandomMessage();
+        },
+        gameReset() {
+            this.batteryCounter = 14;
+            this.step = 1;
+            this.level = 1;
+            this.displayRandomMessage();
+            this.displayedMessages = [];
+        }
+    },
+    computed: {
+        showBattery() {
+            return (this.step >= 3 && this.step != 11 && this.step < 19)
+        },
+        resultType() {
+            if (this.batteryCounter >= 0 && this.batteryCounter <= 6) {
+                return 'low';
+            } else if (this.batteryCounter >= 7 && this.batteryCounter <= 11) {
+                return 'middle';
+            } else if (this.batteryCounter >= 12 && this.batteryCounter <= 15) {
+                return 'hight';
+            } else {
+                return '';
+            }
+        }
+    },
+    watch: {
+        step() {
+            console.log(this.step);
+            if (this.step == 19) {
+                setTimeout(() => this.step += 1, 5000)
+            }
         },
     },
 

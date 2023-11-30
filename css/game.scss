@@ -1909,3 +1909,35 @@
     }
   }
 }
+
+[data-step="19"] {
+  .choise-res__body {
+    text-align: center;
+  }
+  .choise-res__body-title {
+    margin: 0;
+    margin-bottom: clamp(1px, 1.1vw, 16px);
+    font-size: clamp(1px, 1.9vw, 28px);
+  }
+  .choise-res__ico {
+    width: clamp(10px, 5vw, 72px);
+    height: clamp(10px, 5vw, 72px);
+  }
+}
+
+[data-step="20"] {
+  .eco-game__battery {
+    position: static;
+    height: clamp(10px, 3.5vw, 51px);
+    width: clamp(10px, 19vw, 273px);
+    padding-right: clamp(1px, 1.1vw, 15px);
+    padding-left: clamp(1px, 0.69vw, 10px);
+  }
+  .eco-game__battery span {
+    width: clamp(1px, 0.69vw, 10px);
+    height: clamp(1px, 1.9vw, 28px);
+  }
+  .choise-res__head {
+    padding: clamp(1px, 3.6vw, 52px) 0 !important;
+  }
+}
