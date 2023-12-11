@@ -221,8 +221,7 @@
 }
 
 .screen-bg__logo {
-  pointer-events: none;
-  user-select: none;
+  cursor: pointer;
   z-index: 10;
   position: absolute;
   left: 4.9%;
