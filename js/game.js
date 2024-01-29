@@ -121,7 +121,7 @@ const pollApp = {
         step() {
             console.log(this.step);
             if (this.step == 19) {
-                setTimeout(() => this.step += 1, 5000)
+                setTimeout(() => this.step += 1, 10000)
             }
         },
     },
